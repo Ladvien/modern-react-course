@@ -7,9 +7,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { lat: null, errorMessage: '' };
+
+    // DO NOT LOAD DATA IN CONSTRUCTOR. ❌
   }
 
-  render() {
+  componentDidMount() {
+    // LOAD DATA HERE! 👍🏽
+
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
           this.setState({
@@ -19,9 +23,10 @@ class App extends React.Component {
       (err) => {
         this.setState({ errorMessage: err.message }); 
       }
-    );
-    
+    ); 
+  }
 
+  render() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error: {this.state.errorMessage} </div>
     }
