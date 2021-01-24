@@ -3,26 +3,20 @@ import './App.css';
 
 
 class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { lat: null, errorMessage: '' };
-
-    // DO NOT LOAD DATA IN CONSTRUCTOR. ❌
-  }
+  
+  // This is the only time set the state directly.
+  state = { lat: null, errorMessage: '' };
+  
+  // constructor(props) {
+  //   super(props);
+  //   // ❌ DO NOT LOAD DATA IN CONSTRUCTOR.❌
+  // }
 
   componentDidMount() {
     // LOAD DATA HERE! 👍🏽
-
     window.navigator.geolocation.getCurrentPosition(
-      (position) => {
-          this.setState({
-            lat: position.coords.latitude
-          })
-      },
-      (err) => {
-        this.setState({ errorMessage: err.message }); 
-      }
+        position => this.setState({ lat: position.coords.latitude}),
+        err => this.setState({ errorMessage: err.message })
     ); 
   }
 
