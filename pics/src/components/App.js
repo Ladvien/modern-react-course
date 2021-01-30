@@ -7,6 +7,10 @@ class App extends React.Component {
 
     state = {images: [] };
 
+    userList = function({id, name}) {
+        return <li key={id}>{name}</li>
+    }
+
     onSearchSubmit = async (term) => {
         const res = await unsplash.get('/search/photos', {
             params: {
