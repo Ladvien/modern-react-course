@@ -3,7 +3,7 @@ import axios from 'axios';
 const KEY = 'AIzaSyCOctqQP2Zyw6PdMm-tQwMBUK320Ij2xM8';
 
 export default axios.create({
-    baseUrl: 'https://googleapis.com/youtube/v3',
+    baseURL: 'https://www.googleapis.com/youtube/v3',
     params: {
         part: 'snippet',
         type: 'video',
