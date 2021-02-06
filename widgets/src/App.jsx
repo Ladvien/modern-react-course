@@ -1,32 +1,49 @@
-import React, { Component } from 'react'
-import Accordion from './components/Accordion';
-import Search from './components/Search';
+import React, { useState } from "react";
+import Accordion from "./components/Accordion";
+import Search from "./components/Search";
+import Dropdown from "./components/Dropdown";
 
 const items = [
-    {
-        title: 'What is React?',
-        content: 'React is a frontend framework.'
-    },
-    {
-        title: 'Why use React?',
-        content: 'It favorite library among engineers.'
-    },
-    {
-        title: 'How do you use React?',
-        content: 'You use React by creating components.'
-    },
-]
+  {
+    title: "What is React?",
+    content: "React is a frontend framework.",
+  },
+  {
+    title: "Why use React?",
+    content: "It favorite library among engineers.",
+  },
+  {
+    title: "How do you use React?",
+    content: "You use React by creating components.",
+  },
+];
 
+const options = [
+  {
+    label: "The Color Red",
+    value: "red",
+  },
+  {
+    label: "The Color Blue",
+    value: "blue",
+  },
+  {
+    label: "The Color Green",
+    value: "green",
+  },
+];
 
-class App extends Component {
-    state = {  }
-    render() { 
-        return ( 
-            <div>
-                <Search />
-            </div>
-         );
-    }
-}
- 
-export default App;
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
+  const [selected, setSelected] = useState(options[0]);
+
+  return (
+    <div>
+      <Dropdown
+        selected={selected}
+        onSelectedChange={setSelected}
+        options={options}
+      />
+    </div>
+  );
+};
