@@ -4,6 +4,7 @@ import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
 import Route from "./components/Route";
+import Header from "./components/Header";
 
 const items = [
     {
@@ -35,34 +36,14 @@ const options = [
     },
 ];
 
-const showAccordion = () => {
-    if (window.location.pathname === "/") {
-        return <Accordion items={items} />;
-    }
-};
-
-const showList = () => {
-    if (window.location.pathname === "/list") {
-        return <Search />;
-    }
-};
-
-const showDropdown = () => {
-    if (window.location.pathname === "/dropdown") {
-        return <Dropdown />;
-    }
-};
-
-const showTranslate = () => {
-    if (window.location.pathname === "/translate") {
-        return <Translate />;
-    }
-};
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
+    const [selected, setSelected] = useState(options[0]);
+    const [showDropDown, setShowDropDown] = useState(true);
+
     return (
         <div>
+            <Header />
             <Route path="/">
                 <Accordion items={items} />
             </Route>
@@ -70,7 +51,12 @@ export default () => {
                 <Search />
             </Route>
             <Route path="/dropdown">
-                <Dropdown />
+                <Dropdown
+                    label="Select a Color"
+                    options={options}
+                    selected={selected}
+                    onSelectedChange={setSelected}
+                />
             </Route>
             <Route path="/translate">
                 <Translate />
